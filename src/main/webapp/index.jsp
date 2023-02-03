@@ -10,12 +10,17 @@
 
 <%
 User auth = (User) request.getSession().getAttribute("auth");
-if (auth != null) {
+if (auth != null) 
+{
 	request.setAttribute("auth", auth);
 }
 
 BookDao bd = new BookDao(DbCon.getConnection());
 List<Book> books = bd.getAllProducts();
+
+AuthorDao ad = new AuthorDao(DbCon.getConnection());
+List<Author> authors = ad.getAllAuthor();
+
 %>
 
 <!DOCTYPE html>
@@ -148,7 +153,7 @@ List<Book> books = bd.getAllProducts();
 							</div>
 							</div>
 						</div>
-					</div>
+					
 					<div class="col-lg-6">
 						<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
 							<div class="iq-card-header d-flex justify-content-between mb-0">
@@ -176,16 +181,17 @@ List<Book> books = bd.getAllProducts();
 									</div>
 								</div>
 							</div>
+							
 							<div class="iq-card-body">
 								<div class="row align-items-center">
 									<div class="col-sm-5 pr-0">
 										<a href="javascript:void();"><img
 											class="img-fluid rounded w-100"
-											src="images/page-img/featured-book.png" alt=""></a>
+											src="images/books/the-last-of-us.jpg" alt=""></a>
 									</div>
 									<div class="col-sm-7 mt-3 mt-sm-0">
-										<h4 class="mb-2">Casey Christie night book into find...</h4>
-										<p class="mb-2">Author: Gheg origin</p>
+										<h4 class="mb-2">The Art of Last of Us</h4>
+										<p class="mb-2">Author: Rachel Edidin </p>
 										<div class="mb-2 d-block">
 											<span class="font-size-12 text-warning"> <i
 												class="fa fa-star"></i> <i class="fa fa-star"></i> <i
@@ -193,16 +199,16 @@ List<Book> books = bd.getAllProducts();
 												class="fa fa-star"></i>
 											</span>
 										</div>
-										<span class="text-dark mb-3 d-block">Lorem Ipsum is
-											simply dummy test in find a of the printing and typeset ing
-											industry into end.</span>
+										<span class="text-dark mb-3 d-block"> Naughty Dog Studios and Dark Horse proudly present the essential companion to The Last of Us, a richly detailed and compelling game set in a postpandemic world where humans have become an endangered species.  </span>
 										<button type="submit" class="btn btn-primary learn-more">Learn
 											More</button>
 									</div>
 								</div>
 							</div>
+							
 						</div>
 					</div>
+					
 					<div class="col-lg-6">
 						<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
 							<div class="iq-card-header d-flex justify-content-between mb-0">
@@ -230,168 +236,36 @@ List<Book> books = bd.getAllProducts();
 									</div>
 								</div>
 							</div>
+							
+							
 							<div class="iq-card-body">
-								<ul
-									class="list-inline row mb-0 align-items-center iq-scrollable-block">
+								<ul class="list-inline row mb-0 align-items-center iq-scrollable-block">
+								<%
+									if (!authors.isEmpty()) {
+										for (Author a : authors) {
+											System.out.println(a.getAuthor_id());
+									%>
 									<li class="col-sm-6 d-flex mb-3 align-items-center">
+									
 										<div class="icon iq-icon-box mr-3">
 											<a href="javascript:void();"><img
 												class="img-fluid avatar-60 rounded-circle"
-												src="images/user/01.jpg" alt=""></a>
+												src="images/author-pic/<%=a.getAuthor_pic() %>" alt="<%=a.getAuthor_name()%>"></a>
 										</div>
 										<div class="mt-1">
-											<h6>Brandon Guidelines</h6>
+											<h6><%=a.getAuthor_name() %></h6>
 											<p class="mb-0 text-primary">
-												Publish Books: <span class="text-body">2831</span>
+												Publish Books: <span class="text-body"><%=a.getBook_published() %></span>
 											</p>
 										</div>
 									</li>
-									<li class="col-sm-6 d-flex mb-3 align-items-center">
-										<div class="icon iq-icon-box mr-3">
-											<a href="javascript:void();"><img
-												class="img-fluid avatar-60 rounded-circle"
-												src="images/user/02.jpg" alt=""></a>
-										</div>
-										<div class="mt-1">
-											<h6>Hugh Millie-Yate</h6>
-											<p class="mb-0 text-primary">
-												Publish Books: <span class="text-body">432</span>
-											</p>
-										</div>
-									</li>
-									<li class="col-sm-6 d-flex mb-3 align-items-center">
-										<div class="icon iq-icon-box mr-3">
-											<a href="javascript:void();"><img
-												class="img-fluid avatar-60 rounded-circle"
-												src="images/user/03.jpg" alt=""></a>
-										</div>
-										<div class="mt-1">
-											<h6>Nathaneal Down</h6>
-											<p class="mb-0 text-primary">
-												Publish Books: <span class="text-body">5471</span>
-											</p>
-										</div>
-									</li>
-									<li class="col-sm-6 d-flex mb-3 align-items-center">
-										<div class="icon iq-icon-box mr-3">
-											<a href="javascript:void();"><img
-												class="img-fluid avatar-60 rounded-circle"
-												src="images/user/04.jpg" alt=""></a>
-										</div>
-										<div class="mt-1">
-											<h6>Thomas R. Toe</h6>
-											<p class="mb-0 text-primary">
-												Publish Books: <span class="text-body">8764</span>
-											</p>
-										</div>
-									</li>
-									<li class="col-sm-6 d-flex mb-3 align-items-center">
-										<div class="icon iq-icon-box mr-3">
-											<a href="javascript:void();"><img
-												class="img-fluid avatar-60 rounded-circle"
-												src="images/user/05.jpg" alt=""></a>
-										</div>
-										<div class="mt-1">
-											<h6>Druid Wensleydale</h6>
-											<p class="mb-0 text-primary">
-												Publish Books: <span class="text-body">8987</span>
-											</p>
-										</div>
-									</li>
-									<li class="col-sm-6 d-flex mb-3 align-items-center">
-										<div class="icon iq-icon-box mr-3">
-											<a href="javascript:void();"><img
-												class="img-fluid avatar-60 rounded-circle"
-												src="images/user/06.jpg" alt=""></a>
-										</div>
-										<div class="mt-1">
-											<h6>Natalya Undgrowth</h6>
-											<p class="mb-0 text-primary">
-												Publish Books: <span class="text-body">2831</span>
-											</p>
-										</div>
-									</li>
-									<li class="col-sm-6 d-flex mb-3 align-items-center">
-										<div class="icon iq-icon-box mr-3">
-											<a href="javascript:void();"><img
-												class="img-fluid avatar-60 rounded-circle"
-												src="images/user/07.jpg" alt=""></a>
-										</div>
-										<div class="mt-1">
-											<h6>Desmond Eagle</h6>
-											<p class="mb-0 text-primary">
-												Publish Books: <span class="text-body">4324</span>
-											</p>
-										</div>
-									</li>
-									<li class="col-sm-6 d-flex mb-3 align-items-center">
-										<div class="icon iq-icon-box mr-3">
-											<a href="javascript:void();"><img
-												class="img-fluid avatar-60 rounded-circle"
-												src="images/user/08.jpg" alt=""></a>
-										</div>
-										<div class="mt-1">
-											<h6>Lurch Schpellchek</h6>
-											<p class="mb-0 text-primary">
-												Publish Books: <span class="text-body">012</span>
-											</p>
-										</div>
-									</li>
-									<li class="col-sm-6 d-flex mb-3 align-items-center">
-										<div class="icon iq-icon-box mr-3">
-											<a href="javascript:void();"><img
-												class="img-fluid avatar-60 rounded-circle"
-												src="images/user/09.jpg" alt=""></a>
-										</div>
-										<div class="mt-1">
-											<h6>Natalya Undgrowth</h6>
-											<p class="mb-0 text-primary">
-												Publish Books: <span class="text-body">2831</span>
-											</p>
-										</div>
-									</li>
-									<li class="col-sm-6 d-flex mb-3 align-items-center">
-										<div class="icon iq-icon-box mr-3">
-											<a href="javascript:void();"><img
-												class="img-fluid avatar-60 rounded-circle"
-												src="images/user/10.jpg" alt=""></a>
-										</div>
-										<div class="mt-1">
-											<h6>Natalya Undgrowth</h6>
-											<p class="mb-0 text-primary">
-												Publish Books: <span class="text-body">2831</span>
-											</p>
-										</div>
-									</li>
-									<li class="col-sm-6 d-flex mb-3 align-items-center">
-										<div class="icon iq-icon-box mr-3">
-											<a href="javascript:void();"><img
-												class="img-fluid avatar-60 rounded-circle"
-												src="images/user/11.jpg" alt=""></a>
-										</div>
-										<div class="mt-1">
-											<h6>Natalya Undgrowth</h6>
-											<p class="mb-0 text-primary">
-												Publish Books: <span class="text-body">2831</span>
-											</p>
-										</div>
-									</li>
-									<li class="col-sm-6 d-flex mb-3 align-items-center">
-										<div class="icon iq-icon-box mr-3">
-											<a href="javascript:void();"><img
-												class="img-fluid avatar-60 rounded-circle"
-												src="images/user/01.jpg" alt=""></a>
-										</div>
-										<div class="mt-1">
-											<h6>Natalya Undgrowth</h6>
-											<p class="mb-0 text-primary">
-												Publish Books: <span class="text-body">2831</span>
-											</p>
-										</div>
-									</li>
+									<%}} %>
 								</ul>
 							</div>
+						
 						</div>
+					</div>
+					
 					</div>
 					<div class="col-lg-12">
 						<div class="iq-card iq-card-block iq-card-stretch iq-card-height">
@@ -427,7 +301,7 @@ List<Book> books = bd.getAllProducts();
 														<span class="bg-primary" data-percent="78"></span>
 													</div>
 												</div>
-												<a href="#" class="text-dark">Read Now<i
+												<a href="#" class="text-dark">Show Details<i
 													class="ri-arrow-right-s-line"></i></a>
 											</div>
 										</div>
@@ -531,7 +405,7 @@ List<Book> books = bd.getAllProducts();
 					</ul>
 				</div>
 				<div class="col-lg-6 text-right">
-					Copyright 2020 <a href="#">Booksto</a> All Rights Reserved.
+					Copyright 2020 <a href="index.jsp">Bookstore</a> All Rights Reserved.
 				</div>
 			</div>
 		</div>

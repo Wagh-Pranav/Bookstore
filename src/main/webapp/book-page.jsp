@@ -41,6 +41,8 @@ if (auth != null) {
 		BookDao bd = new BookDao(DbCon.getConnection());
 		int id = Integer.parseInt(request.getParameter("id"));
 		Book b1 = bd.getBookById(id);
+		
+		
 		%>
 		
 		<!-- Page Content  -->
