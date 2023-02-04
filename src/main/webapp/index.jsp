@@ -21,6 +21,7 @@ List<Book> books = bd.getAllProducts();
 AuthorDao ad = new AuthorDao(DbCon.getConnection());
 List<Author> authors = ad.getAllAuthor();
 
+
 %>
 
 <!DOCTYPE html>

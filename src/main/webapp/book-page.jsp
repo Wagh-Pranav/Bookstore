@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@page import=" java.text.DecimalFormat" %>
+<%@page import=" java.text.DecimalFormat"%>
 <%@page import="bookstore.connection.DbCon"%>
 <%@page import="bookstore.model.*"%>
 <%@page import="bookstore.dao.*"%>
@@ -8,13 +8,12 @@
 
 <%
 DecimalFormat dfc = new DecimalFormat("#.##");
-request.setAttribute("dfc",dfc);
+request.setAttribute("dfc", dfc);
 
 User auth = (User) request.getSession().getAttribute("auth");
 if (auth != null) {
 	request.setAttribute("auth", auth);
-	
-	
+
 }
 %>
 
@@ -36,15 +35,13 @@ if (auth != null) {
 		<%@include file="includes/sidebar.jsp"%>
 
 		<%@include file="includes/navbar.jsp"%>
-		
+
 		<%
 		BookDao bd = new BookDao(DbCon.getConnection());
 		int id = Integer.parseInt(request.getParameter("id"));
 		Book b1 = bd.getBookById(id);
-		
-		
 		%>
-		
+
 		<!-- Page Content  -->
 		<div id="content-page" class="content-page">
 			<div class="container-fluid">
@@ -125,14 +122,14 @@ if (auth != null) {
 										</div>
 									</div>
 									<%
-									if (b1!=null) {
-											System.out.println(b1.getAuthor());
+									if (b1 != null) {
+										System.out.println(b1.getAuthor());
 									%>
 									<div class="col-md-6">
 										<div
 											class="iq-card-transparent iq-card-block iq-card-stretch iq-card-height">
 											<div class="iq-card-body p-0">
-												<h3 class="mb-3"><%=b1.getName() %></h3>
+												<h3 class="mb-3"><%=b1.getName()%></h3>
 												<div
 													class="price d-flex align-items-center font-weight-500 mb-2">
 													<span class="font-size-20 pr-2 old-price">$99</span> <span
@@ -145,11 +142,13 @@ if (auth != null) {
 														<i class="fa fa-star"></i>
 													</span>
 												</div>
-												<span class="text-dark mb-4 pb-4 iq-border-bottom d-block"><%=b1.getDescription() %></span>
+												<span class="text-dark mb-4 pb-4 iq-border-bottom d-block"><%=b1.getDescription()%></span>
 												<div class="text-primary mb-4">
-													Author: <span class="text-body"><%=b1.getAuthor() %></span>
+													Author: <span class="text-body"><%=b1.getAuthor()%></span>
 												</div>
-												
+												<div class="mb-4 d-flex align-items-center">
+													<a href="add-to-cart?id=<%= b1.getId() %>" class="btn btn-primary view-more mr-2">Add To Cart</a> 
+												</div>
 												<div class="mb-3">
 													<a href="#" class="text-body text-center"><span
 														class="avatar-30 rounded-circle bg-primary d-inline-block mr-2"><i
@@ -175,7 +174,9 @@ if (auth != null) {
 											</div>
 										</div>
 									</div>
-								<%} %>
+									<%
+									}
+									%>
 								</div>
 							</div>
 						</div>
