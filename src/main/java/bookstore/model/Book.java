@@ -6,7 +6,7 @@ public class Book {
 	private String name;
 	private String category;
 	private String image;
-	private String price;
+	private double price;
 	private String year;
 	private String author;
 	private String description;
@@ -18,7 +18,7 @@ public class Book {
 
 	
 
-	public Book(int id, String name, String category, String price, String image, String author, String year,
+	public Book(int id, String name, String category, double price, String image, String author, String year,
 			String description) {
 		this.id = id;
 		this.name = name;
@@ -55,10 +55,10 @@ public class Book {
 	public void setImage(String image) {
 		this.image = image;
 	}
-	public String getPrice() {
+	public double getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(double price) {
 		this.price = price;
 	}
 	public String getYear() {

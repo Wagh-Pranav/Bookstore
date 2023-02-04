@@ -30,7 +30,7 @@ public class BookDao {
 				row.setId(rs.getInt("id"));
 				row.setName(rs.getString("name"));
 				row.setCategory(rs.getString("category"));
-				row.setPrice(rs.getString("price"));
+				row.setPrice(rs.getDouble("price"));
 				row.setImage(rs.getString("image"));
 				row.setAuthor(rs.getString("author"));
 				row.setDescription(rs.getString("description"));
@@ -60,7 +60,7 @@ public class BookDao {
 				row.setId(rs.getInt("id"));
 				row.setName(rs.getString("name"));
 				row.setCategory(rs.getString("category"));
-				row.setPrice(rs.getString("price"));
+				row.setPrice(rs.getDouble("price"));
 				row.setImage(rs.getString("image"));
 				row.setAuthor(rs.getString("author"));
 				row.setDescription(rs.getString("description"));
@@ -90,7 +90,7 @@ public class BookDao {
 				row.setId(rs.getInt("id"));
 				row.setName(rs.getString("name"));
 				row.setCategory(rs.getString("category"));
-				row.setPrice(rs.getString("price"));
+				row.setPrice(rs.getDouble("price"));
 				row.setImage(rs.getString("image"));
 				row.setAuthor(rs.getString("author"));
 				row.setDescription(rs.getString("description"));
@@ -105,5 +105,40 @@ public class BookDao {
 		}
 		System.out.println(row.getName());
 		return null;
+	}
+	
+	public List<Cart> getCartProduct(ArrayList<Cart> cartList)
+	{
+		List<Cart> books =new  ArrayList<Cart>();
+		
+		try{
+			if(cartList.size()>0)
+			{
+				for(Cart item:cartList)
+				{
+					query="select * from books where id=?";
+					pst=this.con.prepareStatement(query);
+					pst.setInt(1,item.getId());
+					rs=pst.executeQuery();
+					while(rs.next())
+					{
+						Cart row=new Cart();
+						row.setId(rs.getInt("id"));
+						row.setName(rs.getString("name"));
+						row.setCategory(rs.getString("category"));
+						row.setPrice(rs.getDouble("price")*item.getQuantity());
+						row.setImage(rs.getString("image"));
+						row.setAuthor(rs.getString("author"));
+						row.setQuantity(item.getQuantity());
+						books.add(row);
+					}
+				}
+			}
+		}
+		catch(Exception e) 
+		{
+			System.out.println(e.getMessage());
+		}
+		return books;
 	}
 }

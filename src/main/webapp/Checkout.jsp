@@ -1,13 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
-  <%@page import="bookstore.servlet.*"%>  
 <%@page import="bookstore.connection.DbCon"%>
 <%@page import="bookstore.model.*"%>
+<%@page import="bookstore.dao.*"%>
+<%@page import=" java.util.*"%>
 <%
 User auth = (User) request.getSession().getAttribute("auth");
-if (auth != null) {
+if (auth != null) 
+{
 	request.setAttribute("auth", auth);
-}
+}	
+	ArrayList <Cart> cart_list =(ArrayList <Cart>) session.getAttribute("cart-list");
+	List<Cart> cartProduct=null;
+	if(cart_list!=null)
+	{
+		BookDao bdao=new BookDao(DbCon.getConnection());
+		cartProduct= bdao.getCartProduct(cart_list);
+		request.setAttribute(" cart_list",cart_list);
+	}
+
 %>
 
 <!DOCTYPE html>
@@ -46,43 +57,55 @@ if (auth != null) {
                               </div>
                               <div class="iq-card-body">
                                  <ul class="list-inline p-0 m-0">
+                                  <%
+                                       if(cart_list != null)
+                                       {
+                                    	   for(Cart c: cartProduct)
+                                    	   {%>
                                     <li class="checkout-product">
-                                       <div class="row align-items-center">
-                                          <div class="col-sm-2">
-                                             <span class="checkout-product-img">
-                                             <a href="javascript:void();"><img class="img-fluid rounded" src="images/checkout/01.jpg" alt=""></a>
-                                             </span>
-                                          </div>
-                                          <div class="col-sm-4">
-                                             <div class="checkout-product-details">
-                                                <h5>The Raze night book</h5>
-                                                <p class="text-success">In stock</p>
-                                                <div class="price">
-                                                   <h5>$180.00</h5>
-                                                </div>
-                                             </div>
-                                          </div>
-                                          <div class="col-sm-6">
-                                             <div class="row">
-                                                <div class="col-sm-10">
-                                                   <div class="row align-items-center mt-2">
-                                                      <div class="col-sm-7 col-md-6">
-                                                         <button type="button" class="fa fa-minus qty-btn" id="btn-minus"></button>
-                                                         <input type="text" id="quantity" value="0">
-                                                         <button type="button" class="fa fa-plus qty-btn" id="btn-plus"></button>
-                                                      </div>
-                                                      <div class="col-sm-5 col-md-6">
-                                                         <span class="product-price">$180.00</span>
-                                                      </div>
-                                                   </div>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                   <a href="javascript:void();" class="text-dark font-size-20"><i class="ri-delete-bin-7-fill"></i></a>
-                                                </div>
-                                             </div>
-                                          </div>
-                                       </div>
+                                   
+                                    		   <div class="row align-items-center">
+                                               <div class="col-sm-2">
+                                                  <span class="checkout-product-img">
+                                                  <a href="javascript:void();"><img class="img-fluid rounded" src="images/books/<%=c.getImage() %>" alt=""></a>
+                                                  </span>
+                                               </div>
+                                               <div class="col-sm-4">
+                                                  <div class="checkout-product-details">
+                                                     <h5><%=c.getName() %></h5>
+                                                     <p class="text-success">In stock</p>
+                                                     <div class="price">
+                                                        <h5><span>&#8377;</span><%=c.getPrice() %></h5>
+                                                     </div>
+                                                  </div>
+                                               </div>
+                                               <div class="col-sm-6">
+                                                  <div class="row">
+                                                     <div class="col-sm-10">
+                                                        <div class="row align-items-center mt-2">
+                                                           <div class="col-sm-7 col-md-6">
+                                                              <button type="button" class="fa fa-minus qty-btn" id="btn-minus"></button>
+                                                              <input type="text" id="quantity" value="0">
+                                                              <button type="button" class="fa fa-plus qty-btn" id="btn-plus"></button>
+                                                           </div>
+                                                           <div class="col-sm-5 col-md-6">
+                                                              <span class="product-price"><span>&#8377;</span><%=c.getPrice() %></span>
+                                                           </div>
+                                                        </div>
+                                                     </div>
+                                                     <div class="col-sm-2">
+                                                        <a href="javascript:void();" class="text-dark font-size-20"><i class="ri-delete-bin-7-fill"></i></a>
+                                                     </div>
+                                                  </div>
+                                               </div>
+                                            </div>
+                                    	
                                     </li>
+                                       <%}
+                                       }
+                                       
+                                       %>
+                                       
                                  </ul>
                               </div>
                            </div>

@@ -3,7 +3,6 @@ package bookstore.servlet;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,13 +16,15 @@ import bookstore.model.Cart;
  * Servlet implementation class AddToCartServlet
  */
 @WebServlet("/add-to-cart")
-public class AddToCartServlet extends HttpServlet {
+public class AddToCartServlet extends HttpServlet 
+{
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException 
+	{
 		// TODO Auto-generated method stub
 		response.setContentType("text/html	; charset UTF-8");
 		
@@ -46,10 +47,24 @@ public class AddToCartServlet extends HttpServlet {
 			}
 			else 
 			{
-				out.println("Cart list exist");
+				cartList=cart_list;
+				boolean exist=false;
+				
+				for(Cart c:cartList)
+				{
+					if(c.getId()==id)
+					{
+						exist=true;
+						out.println("product exist");
+					}
+				}
+				if(!exist)
+				{
+					cartList.add(cm);
+					response.sendRedirect("index.jsp");
+				}
 			}
-		}
 		
 	}
 
-}
+}}

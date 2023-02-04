@@ -14,7 +14,7 @@ if (auth != null)
 {
 	request.setAttribute("auth", auth);
 }
-
+ 
 BookDao bd = new BookDao(DbCon.getConnection());
 List<Book> books = bd.getAllProducts();
 
@@ -54,8 +54,6 @@ List<Author> authors = ad.getAllAuthor();
 				<div class="row">
 
 					<div class="col-lg-12">
-
-
 						<div
 							class="iq-card-transparent iq-card-block iq-card-stretch iq-card-height rounded">
 							<div class="newrealease-contens">
@@ -79,7 +77,6 @@ List<Author> authors = ad.getAllAuthor();
 
 							</div>
 						</div>
-
 					</div>
 
 					<div class="col-lg-12">
@@ -149,7 +146,6 @@ List<Author> authors = ad.getAllAuthor();
 									}
 									}
 									%>
-
 								</div>
 							</div>
 							</div>
