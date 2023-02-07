@@ -6,13 +6,15 @@ public class User {
 	private String fullname;
 	private String email;
 	private String password;
+	private String userProfileImage;
 	
-	public User(int userid, String fullname, String email, String password) {
+	public User(int userid, String fullname, String email, String password,String userProfileImage) {
 
 		this.userid = userid;
 		this.fullname = fullname;
 		this.email = email;
 		this.password = password;
+		this.userProfileImage = userProfileImage;
 	}
 
 	public User() {
@@ -54,7 +56,15 @@ public class User {
 	@Override
 	public String toString() {
 		return "User [userid=" + userid + ", fullname=" + fullname + ", email=" + email + ", password=" + password
-				+ "]";
+				+ ", userProfileImage=" + userProfileImage + "]";
+	}
+
+	public String getUserProfileImage() {
+		return userProfileImage;
+	}
+
+	public void setUserProfileImage(String userProfileImage) {
+		this.userProfileImage = userProfileImage;
 	}
 	
 	

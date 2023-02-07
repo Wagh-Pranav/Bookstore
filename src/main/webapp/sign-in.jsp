@@ -44,7 +44,7 @@ if(cart_list!=null)
                           <div class="sign-in-from bg-primary rounded">
                         
                               <h3 class="mb-0 text-center text-white">Sign in</h3>
-                              <p class="text-center text-white">Enter your email address and password to access admin panel.</p>
+                              <p class="text-center text-white">Enter your email address and password</p>
                               <form class="mt-4 form-text">
                                   <div class="form-group">
                                       <label for="exampleInputEmail1">Email address</label>

@@ -43,7 +43,10 @@ public class AddToCartServlet extends HttpServlet
 			{
 				cartList.add(cm);
 				session.setAttribute("cart-list",cartList);
-				out.println("Session created and added to list");
+				out.println("<script type=\"text/javascript\">"); 
+				out.println("alert('Product Added to Cart');"); 
+				out.println("location='index.jsp';"); 
+				out.println("</script>"); 
 			}
 			else 
 			{
@@ -55,7 +58,10 @@ public class AddToCartServlet extends HttpServlet
 					if(c.getId()==id)
 					{
 						exist=true;
-						out.println("product exist");
+						out.println("<script type=\"text/javascript\">"); 
+						out.println("alert('Product exist in cart');"); 
+						out.println("location='index.jsp';"); 
+						out.println("</script>");
 					}
 				}
 				if(!exist)

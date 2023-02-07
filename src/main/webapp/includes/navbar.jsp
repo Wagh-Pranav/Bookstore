@@ -7,6 +7,7 @@
 <%@page import="bookstore.dao.*"%>
 <%@page import=" java.util.*"%>
 <%
+
 ArrayList <Cart> cart_list =(ArrayList <Cart>) session.getAttribute("cart-list");
 List<Cart> cartProduct=null;
 if(cart_list!=null)
@@ -93,7 +94,7 @@ if(cart_list!=null)
 						<li class="nav-item nav-icon dropdown"><a href="#"
 							class="search-toggle iq-waves-effect text-gray rounded"> <i
 								class="ri-shopping-cart-2-line"></i> <span
-								class="badge badge-danger count-cart rounded-circle"><% out.print(String.valueOf(cart_list.size()));%></span>
+								class="badge badge-danger count-cart rounded-circle">4<%-- <% String.valueOf(cart_list.size());%> --%></span>
 
 						
 						</a>
@@ -102,7 +103,7 @@ if(cart_list!=null)
 									<div class="iq-card-body p-0 toggle-cart-info">
 										<div class="bg-primary p-3">
 											<h5 class="mb-0 text-white">
-												All Carts<small class="badge  badge-light float-right pt-1"><% out.print(String.valueOf(cart_list.size()));%></small>
+												All Carts<small class="badge  badge-light float-right pt-1">4</small>
 											</h5>
 										</div>
 										 <%
