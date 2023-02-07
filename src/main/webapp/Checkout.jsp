@@ -10,14 +10,7 @@ if (auth != null)
 {
 	request.setAttribute("auth", auth);
 }	
-	ArrayList <Cart> cart_list =(ArrayList <Cart>) session.getAttribute("cart-list");
-	List<Cart> cartProduct=null;
-	if(cart_list!=null)
-	{
-		BookDao bdao=new BookDao(DbCon.getConnection());
-		cartProduct= bdao.getCartProduct(cart_list);
-		request.setAttribute(" cart_list",cart_list);
-	}
+	
 
 %>
 

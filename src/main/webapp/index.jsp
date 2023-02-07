@@ -132,7 +132,7 @@ List<Author> authors = ad.getAllAuthor();
 															</h6>
 														</div>
 														<div class="iq-product-action">
-															<a href="javascript:void();"><i
+															<a href="add-to-cart?id=<%= b.getId() %>"><i
 																class="ri-shopping-cart-2-fill text-primary"></i></a> <a
 																href="javascript:void();" class="ml-2"><i
 																class="ri-heart-fill text-danger"></i></a>
