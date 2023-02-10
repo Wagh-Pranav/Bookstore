@@ -52,13 +52,7 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-	@Override
-	public String toString() {
-		return "User [userid=" + userid + ", fullname=" + fullname + ", email=" + email + ", password=" + password
-				+ ", userProfileImage=" + userProfileImage + "]";
-	}
-
+	
 	public String getUserProfileImage() {
 		return userProfileImage;
 	}
@@ -66,6 +60,14 @@ public class User {
 	public void setUserProfileImage(String userProfileImage) {
 		this.userProfileImage = userProfileImage;
 	}
+
+	@Override
+	public String toString() {
+		return "User [userid=" + userid + ", fullname=" + fullname + ", email=" + email + ", password=" + password
+				+ ", userProfileImage=" + userProfileImage + "]";
+	}
+
+	
 	
 	
 }

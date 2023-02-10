@@ -31,6 +31,7 @@ public class UserDao {
 				user.setUserid(rs.getInt("idusers"));
 				user.setFullname(rs.getString("fullname"));
 				user.setEmail(rs.getString("email"));
+				user.setUserProfileImage(rs.getString("UserProfileImage"));
 				
 			}
 		}catch (Exception e) {

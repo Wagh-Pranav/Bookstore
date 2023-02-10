@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import bookstore.connection.DbCon;
 import bookstore.dao.UserDao;
@@ -43,6 +44,8 @@ public class LoginServlet extends HttpServlet {
 		try (PrintWriter out = response.getWriter()) {
 			String email = request.getParameter("login-email");
 			String password = request.getParameter("login-password");
+			String fullname = request.getParameter("fullname");
+		    String userProfileImage = request.getParameter("userProfileImage");
 			try {
 				UserDao udao = new UserDao(DbCon.getConnection());
 				User user = udao.userLogin(email, password);
@@ -50,7 +53,11 @@ public class LoginServlet extends HttpServlet {
 				if (user != null) {
 					out.print("User login sucessfull");
 					request.getSession().setAttribute("auth", user);
+//					 HttpSession session = request.getSession();
+//					session.setAttribute("fullname", fullname);
+//				    session.setAttribute("userProfileImage", userProfileImage);
 					response.sendRedirect("index.jsp");
+				    
 				} 
 				else {
 					out.print("User login failed");

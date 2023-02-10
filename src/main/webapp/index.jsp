@@ -10,6 +10,7 @@
 
 <%
 User auth = (User) request.getSession().getAttribute("auth");
+
 if (auth != null) 
 {
 	request.setAttribute("auth", auth);
@@ -63,7 +64,7 @@ List<Author> authors = ad.getAllAuthor();
 									<%
 									if (!books.isEmpty()) {
 										for (Book b : books) {
-											System.out.println(b.getAuthor());
+											
 									%>
 									<li class="item"><a href="javascript:void();"> <img
 											src="images/books/<%=b.getImage()%>"
@@ -240,7 +241,7 @@ List<Author> authors = ad.getAllAuthor();
 								<%
 									if (!authors.isEmpty()) {
 										for (Author a : authors) {
-											System.out.println(a.getAuthor_id());
+										
 									%>
 									<li class="col-sm-6 d-flex mb-3 align-items-center">
 									

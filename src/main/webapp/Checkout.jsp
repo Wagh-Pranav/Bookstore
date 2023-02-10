@@ -10,7 +10,9 @@ if (auth != null)
 {
 	request.setAttribute("auth", auth);
 }	
-	
+
+
+
 
 %>
 
@@ -34,6 +36,19 @@ if (auth != null)
 <%@include file="includes/sidebar.jsp" %>
          
 <%@include file="includes/navbar.jsp" %> 
+
+<%
+double total=0;
+
+if(cart_list!=null)
+{
+	BookDao bdao=new BookDao(DbCon.getConnection());
+	total = bdao.getTotalCartPrice(cart_list);
+	request.setAttribute("cart_list",cart_list);
+	request.setAttribute("total",total);
+}
+
+%>
 
          <!-- Page Content  -->
          <div id="content-page" class="content-page">
@@ -77,9 +92,9 @@ if (auth != null)
                                                      <div class="col-sm-10">
                                                         <div class="row align-items-center mt-2">
                                                            <div class="col-sm-7 col-md-6">
-                                                              <button type="button" class="fa fa-minus qty-btn" id="btn-minus"></button>
-                                                              <input type="text" id="quantity" value="0">
-                                                              <button type="button" class="fa fa-plus qty-btn" id="btn-plus"></button>
+                                                              <button  type="button" class="fa fa-minus qty-btn"  id="btn-minus" href="QuantityIncDecServlet"></button>
+                                                              <input type="text" id="quantity" value="1">
+                                                              <button type="button" class="fa fa-plus qty-btn" href="QuantityIncDecServlet" id="btn-plus"></button>
                                                            </div>
                                                            <div class="col-sm-5 col-md-6">
                                                               <span class="product-price"><span>&#8377;</span><%=c.getPrice() %></span>
@@ -106,28 +121,18 @@ if (auth != null)
                         <div class="col-lg-4">
                            <div class="iq-card">
                               <div class="iq-card-body">
-                                 <p>Options</p>
-                                 <div class="d-flex justify-content-between">
-                                    <span>Coupons</span>
-                                    <span><a href="#"><strong>Apply</strong></a></span>
-                                 </div>
-                                 <hr>
                                  <p><b>Price Details</b></p>
                                  <div class="d-flex justify-content-between mb-1">
                                     <span>Total MRP</span>
-                                    <span>$829</span>
+                                    <span> <span>&#8377;</span>${(total>0)?total:0}</span>
                                  </div>
                                  <div class="d-flex justify-content-between mb-1">
                                     <span>Bag Discount</span>
-                                    <span class="text-success">-20$</span>
+                                    <span class="text-success"><span>&#8377;</span>20</span>
                                  </div>
                                  <div class="d-flex justify-content-between mb-1">
                                     <span>Estimated Tax</span>
-                                    <span>$15</span>
-                                 </div>
-                                 <div class="d-flex justify-content-between mb-1">
-                                    <span>EMI Eligibility</span>
-                                    <span><a href="#">Details</a></span>
+                                    <span><span>&#8377;</span>  <%=(cart_list.size()*(15))%>   </span>
                                  </div>
                                  <div class="d-flex justify-content-between">
                                     <span>Delivery Charges</span>
@@ -136,7 +141,7 @@ if (auth != null)
                                  <hr>
                                  <div class="d-flex justify-content-between">
                                     <span class="text-dark"><strong>Total</strong></span>
-                                    <span class="text-dark"><strong>$824</strong></span>
+                                    <span class="text-dark"><strong> ${(total>0)?total:0} </strong></span>
                                  </div>
                                  <a id="place-order" href="javascript:void();" class="btn btn-primary d-block mt-3 next">Place order</a>
                               </div>

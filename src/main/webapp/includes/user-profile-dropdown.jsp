@@ -6,14 +6,20 @@
 <head>
 <meta charset="ISO-8859-1">
 <title>Insert title here</title>
+<%
+
+    String fullname = (String) session.getAttribute("fullname");
+    String userProfileImage = (String) session.getAttribute("userProfileImage");
+    
+%>
 </head>
 <body>
 	<li class="line-height pt-3"><a href="#"
 		class="search-toggle iq-waves-effect d-flex align-items-center"> <img
-			src="images/user/1.jpg" class="img-fluid rounded-circle mr-3"
+			src="images/user/<%=auth.getUserProfileImage() %>" class="img-fluid rounded-circle mr-3"
 			alt="user">
 			<div class="caption">
-				<h6 class="mb-1 line-height">Barry Tech</h6>
+				<h6 class="mb-1 line-height"><%=auth.getFullname() %></h6>
 				<p class="mb-0 text-primary">$20.32</p>
 			</div>
 	</a>
@@ -21,7 +27,7 @@
 			<div class="iq-card shadow-none m-0">
 				<div class="iq-card-body p-0 ">
 					<div class="bg-primary p-3">
-						<h5 class="mb-0 text-white line-height">Hello Barry Tech</h5>
+						<h5 class="mb-0 text-white line-height">Hello <%=auth.getFullname() %></h5>
 						<span class="text-white font-size-12">Available</span>
 					</div>
 					<a href="profile.jsp" class="iq-sub-card iq-bg-primary-hover">

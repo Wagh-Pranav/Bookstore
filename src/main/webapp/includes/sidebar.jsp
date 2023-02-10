@@ -36,7 +36,6 @@
                         <ul id="dashboard" class="iq-submenu collapse show" data-parent="#iq-sidebar-toggle">
                            <li class="active"><a href="index.jsp"><i class="las la-house-damage"></i>Home Page</a></li>
                            <li><a href="category.jsp"><i class="ri-function-line"></i>Category Page</a></li>
-                           <li><a href="book-page.jsp"><i class="ri-book-line"></i>Book Page</a></li>
                            <li><a href="Checkout.jsp"><i class="ri-checkbox-multiple-blank-line"></i>Checkout</a></li>
                           <li><a href="wishlist.jsp"><i class="ri-heart-line"></i>wishlist</a></li>
                         </ul>
