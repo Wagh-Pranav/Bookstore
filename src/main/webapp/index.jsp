@@ -9,8 +9,8 @@
 
 
 <%
-User auth = (User) request.getSession().getAttribute("auth");
 
+User auth = (User) request.getSession().getAttribute("auth");
 if (auth != null) 
 {
 	request.setAttribute("auth", auth);
@@ -304,6 +304,7 @@ List<Author> authors = ad.getAllAuthor();
 											</div>
 										</div>
 									</li>
+									
 									<li class="col-md-4">
 										<div class="d-flex align-items-center">
 											<div class="col-5 p-0 position-relative">
@@ -329,6 +330,7 @@ List<Author> authors = ad.getAllAuthor();
 											</div>
 										</div>
 									</li>
+									
 									<li class="col-md-4">
 										<div class="d-flex align-items-center">
 											<div class="col-5 p-0 position-relative">
@@ -354,6 +356,7 @@ List<Author> authors = ad.getAllAuthor();
 											</div>
 										</div>
 									</li>
+									
 									<li class="col-md-4">
 										<div class="d-flex align-items-center">
 											<div class="col-5 p-0 position-relative">

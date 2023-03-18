@@ -71,7 +71,6 @@ if(cart_list!=null)
                                     	   for(Cart c: cartProduct)
                                     	   {%>
                                     <li class="checkout-product">
-                                   
                                     		   <div class="row align-items-center">
                                                <div class="col-sm-2">
                                                   <span class="checkout-product-img">
@@ -92,9 +91,9 @@ if(cart_list!=null)
                                                      <div class="col-sm-10">
                                                         <div class="row align-items-center mt-2">
                                                            <div class="col-sm-7 col-md-6">
-                                                              <button  type="button" class="fa fa-minus qty-btn"  id="btn-minus" href="QuantityIncDecServlet"></button>
+                                                              <button  type="button" class="fa fa-minus qty-btn"  id="btn-minus" href="QuantityIncDecServlet?action=dec&id=<%=c.getId() %>"></button>
                                                               <input type="text" id="quantity" value="1">
-                                                              <button type="button" class="fa fa-plus qty-btn" href="QuantityIncDecServlet" id="btn-plus"></button>
+                                                              <button type="button" class="fa fa-plus qty-btn" href="QuantityIncDecServlet?action=inc&id=<%=c.getId() %>" id="btn-plus"></button>
                                                            </div>
                                                            <div class="col-sm-5 col-md-6">
                                                               <span class="product-price"><span>&#8377;</span><%=c.getPrice() %></span>
